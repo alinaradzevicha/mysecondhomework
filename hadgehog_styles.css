@@ -1,0 +1,267 @@
+
+body {
+    display: grid;
+    background: #1a1716;
+    margin: auto;
+    font-size: 1.2em;
+    font-family: optima, sans-serif; 
+    text-align: center;
+    /* height: 100vh; */
+    /* TO DELETE */
+
+                    /* Borders to understand difference between bloks better, might delete later */
+                    grid-gap: 15px;
+                    padding: 15px;
+    
+    grid-template-areas:
+        "header"
+        "hero"
+        "body"
+        "footer"
+}
+/* Header:Brand, global nav, tools */
+/* This will be the header for a mobile version, desktop and tablet versions will be defined bellow  */
+header {
+    grid-area: header;
+    display: grid;
+    background: #3e3836;
+    font-size: 0.8em;
+    padding: 10px;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+       grid-template-areas:
+        "br br"
+        "nav tool";
+}
+                    header nav {
+                        background: #3e3836;
+                        color: #c7bab4; 
+                        /* text color 2x lighter than background color */
+                        grid-area: nav;
+                    }
+                            header nav:hover {
+                                color: #d9dbe2;
+                                background-color: #1a1716;
+                                opacity: 0.5;
+                            }
+                    header .br {
+                        background: #3e3836;
+                        color: #c7bab4; 
+                        grid-area: br;
+                    }
+                            header .br:hover {
+                                color: #d9dbe2;
+                                background-color: #1a1716;
+                                opacity: 0.5;
+                            }
+                    header .tool {
+                        background: #3e3836;
+                        color: #c7bab4; 
+                        grid-area: tool;
+                    }
+                            header .tool:hover {
+                                color: #d9dbe2;
+                                background-color: #1a1716;
+                                opacity: 0.5;
+                            }
+/* Hero Header: hero feature and hero call to action (hero feature has to disappear in mobile*/
+.hero {
+    grid-area:hero; 
+    display: grid;
+    background: #3e3836;
+    color: #3e3836;
+    font-size: 1.5em;
+    font-weight: bolder;
+    grid-template-columns: auto;
+ 
+    grid-template-areas:
+    "feature"  
+      /* /MIGHT DELETE LATER feature if it won't disappear from mobile version*  */
+    "action";
+}
+
+                        .hero .action {
+                            background:#a2a1af;
+                            grid-area: action;
+                        }
+                        .hero .action:hover {
+                            color: #d9dbe2;
+                            background-color: #8f9492;
+                        }
+
+                        .hero .feature {
+                            background: #a2a1af;
+                            grid-area: feature;
+                        }
+
+/* BODY: Article feature, Ad, Article Listing */
+main {
+    grid-area: body;
+    display: grid;
+    text-align: justify;
+    background: #1a1716;
+    color: #c7bab4;
+    padding: 20px;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+  
+   
+    grid-template-areas: 
+        "feature"
+        "ad"
+        "listing";
+}
+
+                    main .feature {
+                        background:#524842;
+                        padding: 20px;
+                        grid-gap: 20px;
+                        font-weight: bolder;
+                        grid-area: feature;
+                    }
+
+                    main .mobile-ad {
+                        grid-area: ad;
+                    }
+
+                    main .listing {
+                        text-align: justify;
+                        background: #1a1716;
+                        color: #c7bab4;
+                        grid-area: listing;
+                    }
+
+/* Footer section */
+footer {
+    background: LightSalmon;
+    padding: 10px;
+    grid-area: footer;
+}
+
+/* Hide Sections which are not part of mobile */
+.desktop-ad {
+    grid-area: ad;
+    display: none;
+}
+
+.hero .feature {
+    display: none;
+}
+
+/* Sidebar section */
+.sidebar {
+    background: BlanchedAlmond;
+    padding: 10px;
+    grid-area: sidebar;
+
+    display: none;
+}
+
+.sidebar .feature {
+    background: rgb(255, 208, 136);
+    height: 100%;
+}
+
+/* Other */
+.mobile-ad img {
+    vertical-align: top;
+    width: 100%;
+}
+
+.desktop-ad img {
+    vertical-align: top;
+    width: 350px;
+}
+
+.mobile-ad:hover {
+    opacity: 0.5;
+}
+
+.desktop-ad:hover {
+    opacity: 0.5;
+}
+
+/* Tablet friendly layout */
+@media (min-width: 576px) {
+    body {
+        grid-template-rows: auto auto 1fr auto auto;
+        grid-template-areas:
+            "header"
+            "hero"
+            "body"
+            "sidebar"
+            "footer";
+    }
+
+    /* Change Header Layout */
+    header {
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-areas:
+            "br nav tool";
+    }
+
+    /* Change Hero Layout */
+    .hero {
+        grid-template-areas:
+            "feature"
+            "action";
+    }
+
+    .hero .feature {
+        display: block;
+    }
+
+    /* Change Body Layout */
+    main {
+        grid-template-columns: 1fr 200px;
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "feature ad"
+            "listing listing";
+    }
+
+    /* Change Sidebar Layout */
+    .sidebar {
+        display: grid;
+    }
+
+    .mobile-ad img {
+        width: 200px;
+    }
+}
+
+/* Desktop friendly layout */
+@media (min-width: 992px) {
+    body {
+        grid-template-columns: 1fr 350px;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas:
+            "header header"
+            "hero ad"
+            "body sidebar"
+            "footer footer"
+    }
+
+    /* Change Hero Layout */
+    .hero {
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas:
+            "feature action"
+    }
+
+    /* Change Body Layout */
+    main {
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+            "feature listing"
+    }
+
+    .mobile-ad {
+        display: none;
+    }
+
+    .desktop-ad {
+        display: block;
+    }
+}
